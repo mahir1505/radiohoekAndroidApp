@@ -11,13 +11,42 @@ android {
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
+    flavorDimensions "version"
+
+    productFlavors {
+        mix {
+            dimension "version"
+            applicationIdSuffix ".mix"
+            resValue "string", "app_name", "Mix"
+        }
+        ask {
+
+            dimension "version"
+            applicationIdSuffix ".ask"
+            resValue "string", "app_name", "Ask"
+        }
+    }
+
     buildTypes {
+        debug {
+            buildConfigField "String", 'WEBSITE_URL', '"https://dev-mix.mahir.be/mobile"'
+            debuggable true
+            versionNameSuffix "-mix"
+        }
+        tst {
+            debuggable false
+            buildConfigField "String", 'WEBSITE_URL', '"https://test-mix.mahir.be/mobile"'
+            versionNameSuffix "-tst"
+        }
         release {
+            debuggable false
+            buildConfigField "String", 'WEBSITE_URL', '"https://test-mix.radiohoek.com/mobile"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

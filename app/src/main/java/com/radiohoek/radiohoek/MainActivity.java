@@ -15,14 +15,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String app_url = Helper.getConfigValue(this, "app_url");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mywebView = (WebView) findViewById(R.id.webview);
         WebSettings webSettings = mywebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mywebView.loadUrl(app_url);
+        mywebView.loadUrl(BuildConfig.WEBSITE_URL);
         mywebView.setWebViewClient(new WebViewClient());
     }
 
